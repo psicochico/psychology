@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francisco Martins · Psicólogo · Saúde Mental do Idoso</title>
+<meta name="description" content="Francisco Martins, psicólogo com foco em saúde mental do idoso, psicogeriatria e cuidado integral. Portfólio, projetos e blog.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     Tokens — papel-sálvia, tinta-teal, nogueira, ouro-velho
+     ============================================================ */
+  :root{
+    --paper:#EDEFE6;
+    --card:#FAF8F2;
+    --card-alt:#F2F0E4;
+    --ink:#1E2B27;
+    --ink-soft:#445048;
+    --walnut:#8C6A4B;
+    --walnut-dark:#6E5238;
+    --sage:#52705F;
+    --sage-dark:#3D5449;
+    --gold:#B98B3E;
+    --line:rgba(30,43,39,.14);
+    --shadow:0 10px 30px -14px rgba(30,43,39,.28);
+    --radius:8px;
+    --font-display:"Fraunces",Georgia,serif;
+    --font-body:"Source Sans 3",-apple-system,"Segoe UI",sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none!important;transition:none!important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:1.08rem;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--walnut-dark); text-decoration-thickness:1px; text-underline-offset:3px;}
+  a:hover{color:var(--sage);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  h1,h2,h3{font-family:var(--font-display); color:var(--ink); line-height:1.2; font-weight:600; margin:0;}
+
+  .wrap{max-width:960px; margin:0 auto; padding:0 1.5rem;}
+  .wrap-narrow{max-width:760px; margin:0 auto; padding:0 1.5rem;}
+
+  section{padding:5.5rem 0;}
+  @media (max-width:640px){ section{padding:3.5rem 0;} }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- Fio divisor (elemento de assinatura) ---------- */
+  .thread{width:100%; height:22px; display:block; margin:0 auto;}
+  .thread path{fill:none; stroke:var(--gold); stroke-width:1.6; stroke-linecap:round; opacity:.7;}
+
+  /* ---------- Navbar ---------- */
+  .navbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:1.1rem 0;
+    background:rgba(237,239,230,0);
+    border-bottom:1px solid transparent;
+    transition:background .35s ease, border-color .35s ease, backdrop-filter .35s ease, padding .3s ease;
+  }
+  .navbar.scrolled{
+    background:rgba(237,239,230,.82);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom-color:var(--line);
+    padding:.8rem 0;
+  }
+  .navbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:1rem;}
+  .brand{
+    font-family:var(--font-display); font-weight:600; font-size:1.15rem;
+    color:var(--ink); text-decoration:none;
+  }
+  .navlinks{display:flex; gap:1.6rem; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    font-size:.95rem; font-weight:600; color:var(--ink-soft); text-decoration:none;
+    border-bottom:2px solid transparent; padding-bottom:2px;
+  }
+  .navlinks a:hover{color:var(--sage); border-bottom-color:var(--gold);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--ink); border-radius:6px; padding:.4rem .6rem; cursor:pointer;}
+  .nav-toggle span{display:block; width:20px; height:2px; background:var(--ink); margin:4px 0;}
+
+  @media (max-width:720px){
+    .navlinks{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--card); border-bottom:1px solid var(--line);
+      flex-direction:column; gap:0; padding:.5rem 1.5rem 1rem;
+      max-height:0; overflow:hidden; transition:max-height .35s ease;
+    }
+    .navlinks.open{max-height:320px;}
+    .navlinks a{display:block; padding:.7rem 0; border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:9.5rem 0 4rem;}
+  .hero .eyebrow{
+    text-transform:uppercase; letter-spacing:.14em; font-size:.8rem; font-weight:700;
+    color:var(--sage); margin:0 0 .9rem;
+  }
+  .hero h1{font-size:clamp(2.1rem,5.4vw,3.1rem); margin-bottom:.6rem;}
+  .hero .role{font-size:1.15rem; color:var(--walnut-dark); font-weight:700; margin-bottom:1.1rem;}
+  .hero p.lede{font-size:1.18rem; color:var(--ink-soft); max-width:62ch;}
+  .hero .cta-row{margin-top:2rem; display:flex; gap:.9rem; flex-wrap:wrap;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.75rem 1.5rem; border-radius:var(--radius);
+    font-weight:700; text-decoration:none; font-size:.98rem;
+    border:1px solid transparent; transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--walnut); color:#fff;}
+  .btn-primary:hover{background:var(--walnut-dark); color:#fff; box-shadow:var(--shadow);}
+  .btn-ghost{border-color:var(--ink); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--sage); color:var(--sage);}
+  .btn svg{width:16px; height:16px; flex-shrink:0;}
+
+  /* ---------- Sobre ---------- */
+  .about-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:3rem; align-items:start;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+
+  .avatar-frame{
+    width:100%; aspect-ratio:1/1; border-radius:var(--radius);
+    background:
+      radial-gradient(circle at 30% 25%, rgba(185,139,62,.35), transparent 55%),
+      linear-gradient(155deg, var(--sage) 0%, var(--ink) 100%);
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(250,248,242,.85);
+    position:relative; overflow:hidden;
+  }
+  .avatar-frame svg{width:46%; height:46%; opacity:.9;}
+  .avatar-frame::after{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(250,248,242,.05) 0 2px, transparent 2px 14px);
+  }
+
+  .eyebrow{text-transform:uppercase; letter-spacing:.14em; font-size:.8rem; font-weight:700; color:var(--sage);}
+
+  .skills{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem;}
+  .skill-tag{
+    font-size:.85rem; font-weight:700; padding:.4rem .85rem;
+    border-radius:999px; background:var(--card-alt); color:var(--ink-soft);
+    border:1px solid var(--line);
+  }
+  .skill-tag.accent{background:rgba(185,139,62,.14); color:var(--walnut-dark); border-color:rgba(185,139,62,.35);}
+
+  /* ---------- Projetos ---------- */
+  .project-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem;}
+  @media (max-width:900px){ .project-grid{grid-template-columns:1fr;} }
+
+  .project-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:1.9rem 1.7rem; display:flex; flex-direction:column; gap:.9rem;
+    border-top:4px solid var(--accent, var(--sage));
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .project-card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--accent, var(--sage));}
+  .project-card .p-icon{
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--accent, var(--sage)); color:#fff;
+  }
+  .project-card .p-icon svg{width:18px; height:18px;}
+  .project-card h3{font-size:1.2rem;}
+  .project-card p{margin:0; color:var(--ink-soft); font-size:.98rem;}
+  .stack-row{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.3rem;}
+  .stack-badge{
+    font-size:.75rem; font-weight:700; letter-spacing:.02em;
+    padding:.28rem .6rem; border-radius:6px;
+    background:var(--card-alt); color:var(--ink-soft); border:1px solid var(--line);
+  }
+
+  /* ---------- Blog ---------- */
+  .post{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:1.8rem 2rem; margin-top:1.4rem;
+  }
+  .post summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+  }
+  .post summary::-webkit-details-marker{display:none;}
+  .post .post-cat{
+    font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--sage);
+  }
+  .post summary h3{font-size:1.25rem; margin-top:.35rem;}
+  .post summary .toggle-icon{
+    flex-shrink:0; width:26px; height:26px; border-radius:50%;
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    color:var(--walnut-dark); transition:transform .3s ease;
+  }
+  .post[open] summary .toggle-icon{transform:rotate(45deg);}
+  .post .excerpt{color:var(--ink-soft); margin:.6rem 0 0;}
+  .post-content{margin-top:1.3rem; padding-top:1.3rem; border-top:1px solid var(--line); color:var(--ink);}
+  .post-content h4{font-family:var(--font-display); font-size:1.05rem; margin:1.4rem 0 .5rem;}
+  .post-content p{margin:.9rem 0;}
+  .post-content ul{padding-left:1.3rem;}
+  .post-content blockquote{
+    margin:1.2rem 0; padding:.2rem 0 .2rem 1.1rem; border-left:3px solid var(--gold);
+    color:var(--ink-soft); font-style:italic;
+  }
+
+  /* ---------- Experiência ---------- */
+  .timeline{list-style:none; margin:2.5rem 0 0; padding:0; border-left:2px solid var(--line);}
+  .timeline li{position:relative; padding:0 0 2rem 1.7rem;}
+  .timeline li::before{
+    content:""; position:absolute; left:-6px; top:5px; width:10px; height:10px;
+    border-radius:50%; background:var(--gold);
+  }
+  .timeline .stamp{font-size:.82rem; color:var(--sage); font-weight:700; text-transform:uppercase; letter-spacing:.06em;}
+  .timeline h3{font-size:1.15rem; margin:.25rem 0 .35rem;}
+  .timeline p{margin:0; color:var(--ink-soft);}
+
+  /* ---------- Contato / Footer ---------- */
+  .contact-section{background:var(--sage-dark); color:var(--card);}
+  .contact-section h2{color:var(--card);}
+  .contact-section .lede{color:rgba(250,248,242,.82); max-width:56ch;}
+  .contact-section .thread path{stroke:var(--gold); opacity:.9;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:1rem; margin-top:2rem;}
+  .contact-links .btn-primary{background:var(--gold);}
+  .contact-links .btn-primary:hover{background:#a17832;}
+  .contact-links .btn-ghost{border-color:rgba(250,248,242,.5); color:var(--card);}
+  .contact-links .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+
+  footer.site-footer{
+    background:var(--sage-dark); color:rgba(250,248,242,.65);
+    padding:2rem 0 2.5rem; font-size:.9rem; border-top:1px solid rgba(250,248,242,.15);
+  }
+  footer.site-footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem;}
+  footer.site-footer a{color:rgba(250,248,242,.8);}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Francisco Martins</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap-narrow reveal">
+      <p class="eyebrow">Psicologia · Saúde Mental do Idoso</p>
+      <h1>Francisco Martins</h1>
+      <p class="role">Psicólogo · Psicogeriatria, Gerontologia &amp; Cuidado Integral ao Idoso</p>
+      <p class="lede">
+        Psicólogo em formação de pós-graduação em Saúde Mental do Idoso pela UFRJ,
+        construindo minha trajetória na interseção entre clínica, humanização do
+        cuidado e escuta qualificada — com experiência em Atenção Primária (SUS/ESF),
+        plantão psicológico e suporte a pessoas neurodivergentes.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projetos">
+          Ver Projetos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/francisco-martins-38102aa1/" target="_blank" rel="noopener">
+          LinkedIn
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.8c0-1.38-.03-3.15-1.93-3.15-1.93 0-2.23 1.5-2.23 3.05V21H9z"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener" title="Adicione o link do seu GitHub aqui">
+          GitHub
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <svg class="thread wrap-narrow reveal" viewBox="0 0 760 22" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,11 C 60,3 100,19 160,11 S 260,3 320,11 S 420,19 480,11 S 580,3 640,11 S 720,19 760,11" />
+  </svg>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="eyebrow">Sobre mim</p>
+          <h2 style="font-size:2rem; margin:.6rem 0 1.3rem;">Escuta qualificada, formada na prática.</h2>
+          <p>
+            Sou psicólogo com foco em saúde mental do idoso, construindo minha
+            trajetória na interseção entre clínica, humanização do cuidado e
+            escuta qualificada. Atualmente curso Pós-Graduação em Saúde Mental
+            do Idoso pela UFRJ, com extensão em Psiquiatria e Saúde Mental —
+            formação que direciono para atuação em Psicogeriatria, Gerontologia
+            e cuidado integral ao idoso em contextos clínicos e institucionais.
+          </p>
+          <p>
+            Tenho experiência com aplicação e interpretação de escalas e
+            instrumentos psicológicos (MoCA, MEEM, Katz, GDS, Pfeffer, TIG-NV,
+            entre outros) e de qualidade de vida, facilitação de oficinas sobre
+            ansiedade, estresse e depressão, psicoeducação, e atuação em
+            equipes interdisciplinares. Complemento minha prática clínica com
+            10 anos de experiência em atendimento humanizado — o que me deu
+            escuta ativa, inteligência emocional e comunicação empática como
+            habilidades de base, não como teoria.
+          </p>
+          <p>
+            Sou voluntário ativo em projetos sociais e participante de
+            congressos sobre saúde mental e luto — espaços que mantenho como
+            parte contínua da minha formação e do meu compromisso com o
+            cuidado.
+          </p>
+          <div class="skills">
+            <span class="skill-tag accent">Psicogeriatria</span>
+            <span class="skill-tag accent">Avaliação Neuropsicológica</span>
+            <span class="skill-tag accent">Plantão Psicológico</span>
+            <span class="skill-tag">Atenção Primária (SUS/ESF)</span>
+            <span class="skill-tag">Psicoeducação</span>
+            <span class="skill-tag">Facilitação de Oficinas</span>
+            <span class="skill-tag">Escuta Ativa</span>
+            <span class="skill-tag">Trabalho Interdisciplinar</span>
+            <span class="skill-tag">Suporte à Neurodivergência</span>
+            <span class="skill-tag">Voluntariado Social</span>
+            <span class="skill-tag">HTML5 / CSS3 / JavaScript</span>
+          </div>
+        </div>
+        <div class="reveal" aria-hidden="true">
+          <div class="avatar-frame">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+              <circle cx="50" cy="36" r="16"/>
+              <path d="M20 88c3-20 15-30 30-30s27 10 30 30"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="thread wrap-narrow reveal" viewBox="0 0 760 22" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,11 C 60,3 100,19 160,11 S 260,3 320,11 S 420,19 480,11 S 580,3 640,11 S 720,19 760,11" />
+  </svg>
+
+  <!-- ============ PROJETOS ============ -->
+  <section id="projetos">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Projetos &amp; iniciativas</p>
+        <h2 style="font-size:2rem; margin:.6rem 0;">O que venho construindo</h2>
+      </div>
+
+      <div class="project-grid">
+
+        <article class="project-card reveal" style="--accent:var(--sage);">
+          <div class="p-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <h3>Blog de Saúde Mental do Idoso</h3>
+          <p>Site editorial próprio, publicado via GitHub Pages, dedicado a
+          psicoeducação sobre demências, prevenção e novidades em pesquisa —
+          escrito para pacientes, famílias e cuidadores entenderem o tema com
+          profundidade e sem alarmismo.</p>
+          <div class="stack-row">
+            <span class="stack-badge">Jekyll</span>
+            <span class="stack-badge">HTML5</span>
+            <span class="stack-badge">CSS3</span>
+            <span class="stack-badge">GitHub Pages</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" style="--accent:var(--gold);">
+          <div class="p-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <h3>Psicoterapia &amp; Avaliação Clínica</h3>
+          <p>Atendimento psicoterapêutico individual e avaliação de pacientes
+          com suspeita de demência ou outros transtornos mentais, com uso de
+          escalas e instrumentos psicológicos (MoCA, MEEM, Katz, GDS, Pfeffer,
+          TIG-NV) para apoiar diagnóstico, acompanhamento e orientação à
+          família.</p>
+          <div class="stack-row">
+            <span class="stack-badge">Psicoterapia</span>
+            <span class="stack-badge">Avaliação Neuropsicológica</span>
+            <span class="stack-badge">Psicogeriatria</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" style="--accent:var(--walnut);">
+          <div class="p-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <h3>Oficinas de Psicoeducação</h3>
+          <p>Facilitação de oficinas em grupo sobre ansiedade, estresse e
+          depressão, com foco em linguagem acessível e trabalho conjunto com
+          equipes multiprofissionais em contextos de Atenção Primária.</p>
+          <div class="stack-row">
+            <span class="stack-badge">Psicoeducação</span>
+            <span class="stack-badge">Facilitação de Grupos</span>
+            <span class="stack-badge">Trabalho em Equipe</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <svg class="thread wrap-narrow reveal" viewBox="0 0 760 22" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,11 C 60,3 100,19 160,11 S 260,3 320,11 S 420,19 480,11 S 580,3 640,11 S 720,19 760,11" />
+  </svg>
+
+  <!-- ============ BLOG ============ -->
+  <section id="blog">
+    <div class="wrap-narrow">
+      <div class="reveal">
+        <p class="eyebrow">Blog</p>
+        <h2 style="font-size:2rem; margin:.6rem 0 .5rem;">Textos sobre saúde mental do idoso</h2>
+        <p style="color:var(--ink-soft);">Três textos para começar a conversa. Clique em cada um para ler na íntegra.</p>
+      </div>
+
+      <details class="post reveal">
+        <summary>
+          <div>
+            <div class="post-cat">Psicoeducação</div>
+            <h3>As principais demências: entendendo as diferenças</h3>
+            <p class="excerpt">Demência não é uma doença única, mas um grupo de condições. Entenda as diferenças entre Alzheimer, demência vascular, corpos de Lewy e frontotemporal.</p>
+          </div>
+          <span class="toggle-icon">+</span>
+        </summary>
+        <div class="post-content">
+          <p>Uma dúvida muito comum que ouço de famílias é: "afinal, demência e Alzheimer são a mesma coisa?" A resposta curta é não. <strong>Demência</strong> é um termo guarda-chuva que descreve um conjunto de sintomas — perda progressiva de memória, linguagem, raciocínio ou comportamento, suficiente para atrapalhar a vida diária. O <strong>Alzheimer é a causa mais comum de demência</strong>, mas existem outros tipos, cada um com características, evolução e manejo diferentes.</p>
+          <p>Conhecer essas diferenças ajuda a família a entender o que esperar, e ajuda o profissional a direcionar a avaliação e o cuidado.</p>
+
+          <h4>Doença de Alzheimer</h4>
+          <p>É a causa mais frequente de demência. Costuma começar de forma sutil, com esquecimentos de fatos recentes, repetição de perguntas e dificuldade para aprender informações novas — enquanto memórias antigas ficam preservadas por mais tempo. Com a progressão, aparecem dificuldades de linguagem, orientação espacial e, em fases mais avançadas, para realizar atividades básicas do dia a dia.</p>
+
+          <h4>Demência vascular</h4>
+          <p>Está ligada a lesões nos vasos sanguíneos do cérebro — por exemplo, após um ou mais AVCs, ou por dano progressivo de pequenos vasos. Diferente do Alzheimer, o início pode ser mais abrupto, e a evolução costuma acontecer "em degraus": períodos de estabilidade intercalados com pioras associadas a novos eventos vasculares. É comum que apareça junto com Alzheimer, no que se chama demência mista.</p>
+
+          <h4>Demência com corpos de Lewy</h4>
+          <p>Além do declínio cognitivo, esse tipo se caracteriza por flutuações importantes na atenção e no estado de alerta ao longo do mesmo dia, alucinações visuais bem formadas e sintomas motores parecidos com os do Parkinson, como rigidez e lentidão. É particularmente sensível a certos medicamentos, o que exige cuidado redobrado na hora de prescrever.</p>
+
+          <h4>Demência frontotemporal</h4>
+          <p>Diferente das demais, costuma começar mais cedo (entre os 45 e 65 anos) e afeta primeiro o comportamento e a personalidade — ou a linguagem — antes da memória. Mudanças como desinibição, apatia, perda de empatia ou dificuldade para encontrar palavras costumam ser os primeiros sinais notados pela família, o que muitas vezes atrasa o diagnóstico correto, pois pode ser confundida com quadros psiquiátricos.</p>
+
+          <h4>Por que essa diferenciação importa</h4>
+          <p>O diagnóstico diferencial orienta o plano de cuidado: o manejo de alucinações na demência com corpos de Lewy é diferente do manejo da apatia na frontotemporal, que por sua vez é diferente da reabilitação após um AVC na demência vascular. Por isso a avaliação neuropsicológica, com instrumentos como MoCA, MEEM, e escalas funcionais como Katz e Pfeffer, é uma etapa importante — ela não serve apenas para "confirmar" que há um problema, mas para entender qual é o perfil de dificuldades e forças daquela pessoa específica.</p>
+          <p>Se você percebeu mudanças de memória, comportamento ou linguagem em alguém que ama, o primeiro passo é buscar uma avaliação especializada. Quanto mais cedo o quadro é investigado, mais opções de manejo — e de qualidade de vida — ficam disponíveis.</p>
+        </div>
+      </details>
+
+      <details class="post reveal">
+        <summary>
+          <div>
+            <div class="post-cat">Prevenção</div>
+            <h3>Prevenção da demência: o que a ciência já sabe funcionar</h3>
+            <p class="excerpt">Quase metade dos casos de demência está ligada a fatores de risco modificáveis. Conheça as práticas com maior respaldo científico para reduzir o risco.</p>
+          </div>
+          <span class="toggle-icon">+</span>
+        </summary>
+        <div class="post-content">
+          <p>Uma das perguntas que mais recebo em consultório e em rodas de conversa é: "dá para prevenir demência?" A boa notícia, respaldada por evidências robustas, é que sim — em boa parte.</p>
+          <p>Em 2024, a Comissão Permanente da revista <em>The Lancet</em> sobre Prevenção, Intervenção e Cuidados em Demência atualizou sua análise e chegou a um número importante: <strong>até 45% dos casos de demência no mundo estão associados a 14 fatores de risco modificáveis</strong> ao longo da vida — ou seja, fatores sobre os quais é possível agir, individual e coletivamente. Isso não significa que a demência sempre seja evitável, mas que o risco pode, em muitos casos, ser reduzido ou a doença, retardada.</p>
+
+          <h4>Os 14 fatores, agrupados por fase da vida</h4>
+          <p><strong>Na infância e juventude:</strong> baixa escolaridade — o acesso a educação de qualidade cedo na vida é, isoladamente, um dos fatores de maior peso.</p>
+          <p><strong>Na vida adulta:</strong> perda auditiva não tratada, traumatismo cranioencefálico, hipertensão arterial, consumo excessivo de álcool, obesidade, tabagismo.</p>
+          <p><strong>Na velhice:</strong> depressão, isolamento social, sedentarismo, diabetes, poluição do ar, perda de visão não corrigida e colesterol LDL elevado (estes dois últimos incluídos em 2024).</p>
+          <p>Entre todos, a deficiência auditiva não tratada e o colesterol LDL elevado aparecem entre os que mais pesam isoladamente na proporção de casos, junto com baixa escolaridade na juventude e isolamento social na velhice.</p>
+
+          <h4>O que isso significa na prática</h4>
+          <ul>
+            <li><strong>Tratar a perda auditiva</strong> — usar aparelho auditivo quando indicado parece proteger a cognição, possivelmente por manter o cérebro estimulado e a pessoa engajada socialmente.</li>
+            <li><strong>Manter a pressão arterial e o colesterol controlados</strong>, com acompanhamento médico regular.</li>
+            <li><strong>Manter-se socialmente ativo</strong> — vínculos, conversas e participação em grupos parecem ser protetores, não apenas agradáveis.</li>
+            <li><strong>Praticar atividade física regular</strong>, compatível com a idade e a condição de saúde de cada pessoa.</li>
+            <li><strong>Cuidar da saúde emocional</strong>, buscando tratamento adequado para depressão, em vez de naturalizá-la como "coisa da idade".</li>
+            <li><strong>Proteger a cabeça</strong> em atividades de risco de traumatismo, e <strong>corrigir problemas de visão</strong>.</li>
+          </ul>
+
+          <h4>Um ponto importante: nunca é cedo, nem tarde, demais</h4>
+          <p>A prevenção não é só uma pauta para os 60 ou 70 anos. Ela começa na infância, com o acesso à educação, e continua em cada década da vida. Ao mesmo tempo, mesmo pessoas mais velhas se beneficiam de intervenções — nunca é tarde para começar a cuidar da audição, da pressão ou dos vínculos sociais.</p>
+          <p>Prevenção, aqui, não é sobre culpa individual. É sobre política pública, acesso a saúde e educação, e também sobre pequenas decisões diárias que, somadas ao longo de uma vida, fazem diferença real.</p>
+        </div>
+      </details>
+
+      <details class="post reveal">
+        <summary>
+          <div>
+            <div class="post-cat">Pesquisa</div>
+            <h3>Avanços recentes na pesquisa sobre demências</h3>
+            <p class="excerpt">Biomarcadores no sangue, novos medicamentos modificadores da doença e uma mudança de mentalidade sobre prevenção: um panorama dos avanços mais recentes.</p>
+          </div>
+          <span class="toggle-icon">+</span>
+        </summary>
+        <div class="post-content">
+          <p>Acompanhar a literatura científica sobre demências é, ao mesmo tempo, animador e desafiador: os avanços têm sido rápidos, mas nem sempre chegam de forma clara ao público. Reúno aqui um panorama de três frentes que considero as mais relevantes agora.</p>
+
+          <h4>1. Biomarcadores no sangue</h4>
+          <p>Até pouco tempo, confirmar a presença de proteínas associadas ao Alzheimer exigia exames mais invasivos ou de acesso limitado, como punção lombar ou PET amiloide. Nos últimos tempos, os estudos sobre biomarcadores plasmáticos avançaram de forma significativa, abrindo caminho para um diagnóstico mais precoce, acessível e menos invasivo — especialmente relevante porque muitos dos tratamentos mais recentes só funcionam se aplicados nas fases iniciais da doença.</p>
+
+          <h4>2. Uma nova geração de tratamentos medicamentosos</h4>
+          <p>Historicamente, os medicamentos disponíveis para Alzheimer atuavam apenas sobre os sintomas, melhorando a neurotransmissão colinérgica ou modulando o glutamato, sem interferir na progressão biológica da doença — com benefícios tendendo a ser temporários e limitados, principalmente nas fases mais avançadas.</p>
+          <p>O cenário vem mudando com a chegada de uma nova classe de medicamentos, os chamados <strong>modificadores da doença</strong>, que atuam diretamente sobre a patologia amiloide. O donanemabe foi aprovado pela Anvisa em 2025, e o lecanemabe tem chegada prevista ao Brasil em 2026, consolidando pela primeira vez a disponibilidade de duas terapias desse tipo no país.</p>
+          <p>É importante frisar as limitações: esses medicamentos só fazem sentido em estágios iniciais — comprometimento cognitivo leve ou demência leve — e exigem confirmação da patologia por biomarcadores. Também exigem monitoramento de efeitos adversos específicos, associados ao próprio mecanismo de ação da droga (conhecidos pela sigla ARIA). Por isso, a pergunta relevante já não é apenas "temos novos medicamentos?", mas se os sistemas de saúde estão preparados para usá-los com segurança.</p>
+
+          <h4>3. A prevenção deixou de ser dúvida</h4>
+          <p>Talvez a mudança mais importante não seja um medicamento, mas uma mudança de mentalidade: a prevenção deixou de ser uma dúvida — hoje se sabe que ela é possível. Isso vem sendo tratado como parte central do que se chama de "revoluções" no cuidado em Alzheimer: mudanças de paradigma que atravessam diagnóstico, prevenção, tratamento, gestão do cuidado e políticas públicas.</p>
+
+          <h4>O que isso significa para quem cuida</h4>
+          <p>Para pacientes e famílias, esses avanços se traduzem em três mensagens práticas: buscar avaliação diagnóstica precocemente, entender que nem todo tratamento novo é indicado para todas as fases da doença, e não perder de vista que prevenção e cuidado humanizado seguem sendo, e provavelmente continuarão sendo, tão relevantes quanto qualquer nova droga.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <svg class="thread wrap-narrow reveal" viewBox="0 0 760 22" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,11 C 60,3 100,19 160,11 S 260,3 320,11 S 420,19 480,11 S 580,3 640,11 S 720,19 760,11" />
+  </svg>
+
+  <!-- ============ EXPERIÊNCIA ============ -->
+  <section id="experiencia">
+    <div class="wrap-narrow">
+      <div class="reveal">
+        <p class="eyebrow">Trajetória</p>
+        <h2 style="font-size:2rem; margin:.6rem 0 .5rem;">Experiência profissional</h2>
+      </div>
+
+      <ul class="timeline reveal">
+        <li>
+          <div class="stamp">Estágio clínico · Atenção Primária à Saúde (SUS / ESF)</div>
+          <h3>Atendimento e acolhimento em rede</h3>
+          <p>Atendimentos individuais, acolhimento e articulação com equipes multiprofissionais da Estratégia de Saúde da Família.</p>
+        </li>
+        <li>
+          <div class="stamp">Estágio clínico · Plantão Psicológico</div>
+          <h3>Manejo de crises e intervenção breve</h3>
+          <p>Escuta e intervenção em situações de sofrimento psíquico agudo.</p>
+        </li>
+        <li>
+          <div class="stamp">Infraero</div>
+          <h3>Suporte a pessoas neurodivergentes</h3>
+          <p>Acompanhamento psicológico e mediação em ambiente aeroportuário.</p>
+        </li>
+        <li>
+          <div class="stamp">Trajetória complementar · 10 anos</div>
+          <h3>Atendimento humanizado &amp; Experiência do Cliente</h3>
+          <p>Atuação em CX e suporte (incluindo White Martins, Sephora, Hurb e Revvo), base prática para escuta ativa, inteligência emocional e comunicação empática.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="contact-section">
+    <div class="wrap-narrow reveal">
+      <p class="eyebrow" style="color:var(--gold);">Contato</p>
+      <h2 style="font-size:2rem; margin:.6rem 0 1rem;">Vamos conversar.</h2>
+      <p class="lede">
+        Se você busca um psicólogo comprometido com cuidado integral, humanização
+        e saúde mental do idoso — ou se é familiar de uma pessoa idosa e tem
+        dúvidas sobre como buscar apoio — escreva para mim.
+      </p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:seuemail@exemplo.com">E-mail</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/francisco-martins-38102aa1/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://lattes.cnpq.br/2360848111681977" target="_blank" rel="noopener">Currículo Lattes</a>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener" title="Adicione o link do seu GitHub aqui">GitHub</a>
+      </div>
+      <svg class="thread" viewBox="0 0 760 22" preserveAspectRatio="none" aria-hidden="true" style="margin-top:3rem;">
+        <path d="M0,11 C 60,3 100,19 160,11 S 260,3 320,11 S 420,19 480,11 S 580,3 640,11 S 720,19 760,11" />
+      </svg>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-narrow">
+    <span>&copy; <span id="year"></span> Francisco Martins. Todos os direitos reservados.</span>
+    <span>CRP — em obtenção</span>
+  </div>
+</footer>
+
+<script>
+  // Ano dinâmico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Navbar: blur/transparência ao rolar
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Menu mobile
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Fade-in ao rolar (IntersectionObserver)
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
